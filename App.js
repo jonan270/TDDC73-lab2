@@ -27,12 +27,17 @@ export default function App() {
           </View>
           <Text style={styles.cardText}>6011 2312 5709 4238</Text>
           <View style={styles.bottomRowView}>
-            <Text style={styles.cardText}>Jonathan Andersson</Text>
-            <Text style={styles.cardText}>11/22</Text>
+            <View>
+              <Text style={styles.cardTitleText}>Card holder</Text>
+              <Text style={styles.cardText}>Jonathan Andersson</Text>
+            </View>
+            <View>
+              <Text style={styles.cardTitleText}>Expires</Text>
+              <Text style={styles.cardText}>11/22</Text>
+            </View>
           </View>
         </View>
       </ImageBackground>
-      <Text>Open up App.js to start on your app!</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -49,6 +54,11 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontFamily: 'monospace',
     fontSize: 20,
+  },
+  cardTitleText: {
+    color: 'yellow',
+    fontFamily: 'monospace',
+    fontSize: 16,
   },
   cardImageBg: {
     width: 405,
