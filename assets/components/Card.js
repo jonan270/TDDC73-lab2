@@ -17,23 +17,23 @@ export default function Card(props) {
     return (
     <View style={styles.container}>
         <ImageBackground
-        source={cardBg}
-        style={styles.cardImageBg}
+            source={cardBg}
+            style={styles.cardImageBg}
         >
         <View style={styles.cardView}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image source={chipImg} style={{width: topImgW, height: topImgH}}/>
             <Image source={visaImg} style={{alignSelf: 'flex-end', width: topImgW, height: topImgH, resizeMode: 'contain'}}/>
             </View>
-            <Text style={styles.cardText}>6011 2312 5709 4238</Text>
+            <Text style={styles.cardText}>{props.cardNumber}</Text>
             <View style={styles.bottomRowView}>
             <View>
                 <Text style={styles.cardTitleText}>Card holder</Text>
-                <Text style={styles.cardText}>Jonathan Andersson</Text>
+                <Text style={styles.cardText}>{props.cardHolder}</Text>
             </View>
             <View>
                 <Text style={styles.cardTitleText}>Expires</Text>
-                <Text style={styles.cardText}>11/22</Text>
+                <Text style={styles.cardText}>{props.expires}</Text>
             </View>
             </View>
         </View>

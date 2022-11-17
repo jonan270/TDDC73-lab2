@@ -4,7 +4,11 @@ import Card from './assets/components/Card.js'
 
 export default function App() {
   return (
-    <Card/>
+    <Card
+      cardHolder = "Jonathan Andersson"
+      cardNumber = "6011 2312 5709 4238"
+      expires = "11/22"
+    />
   );
 }
 
