@@ -8,14 +8,14 @@ import chipImg from '../images/chip.png'
 import mastercardImg from '../images/mastercard.png'
 import visaImg from '../images/visa.png'
 
-export default function Card(props) {
-    const topImgScaleFactor = 0.65;
+const topImgScaleFactor = 0.65;
+const topImgW = 100 * topImgScaleFactor;
+const topImgH = 80 * topImgScaleFactor;
 
-    const topImgW = 100 * topImgScaleFactor;
-    const topImgH = 80 * topImgScaleFactor;
+export default function Card(props) {
 
     return (
-    <View style={styles.container}>
+    <View>
         <ImageBackground
             source={cardBg}
             style={styles.cardImageBg}
@@ -23,7 +23,7 @@ export default function Card(props) {
         <View style={styles.cardView}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image source={chipImg} style={{width: topImgW, height: topImgH}}/>
-            <Image source={visaImg} style={{alignSelf: 'flex-end', width: topImgW, height: topImgH, resizeMode: 'contain'}}/>
+            <Image source={visaImg} style={styles.brandImage}/>
             </View>
             <Text style={styles.cardText}>{props.cardNumber}</Text>
             <View style={styles.bottomRowView}>
@@ -44,12 +44,6 @@ export default function Card(props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     cardText: {
       color: Colors.white,
       fontFamily: 'monospace',
@@ -65,6 +59,12 @@ const styles = StyleSheet.create({
       height: 261,
       borderRadius: 15,
       overflow: "hidden",
+    },
+    brandImage: {
+        alignSelf: 'flex-end',
+        width: topImgW,
+        height: topImgH,
+        resizeMode: 'contain',
     },
     cardView: {
       flex: 1,
