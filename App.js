@@ -6,19 +6,30 @@ import Card from './assets/components/Card.js'
 
 
 export default function App() {
-  const [cardNumber, setCardNumber] = useState("#### #### #### ####");
-  const [cardHolder, setCardHolder] = useState("FIRSTNAME SURNAME");
+
+  // States must be used to hold date information
+  // individually, aswell as a state for updating
+  // information displayed on the card.
+  const [month, setMonth] = useState("00");
+  const [year, setYear] = useState("0000");
   const [expire, setExpire] = useState("00/00");
 
+  const [cardNumber, setCardNumber] = useState("#### #### #### ####");
+  const [cardHolder, setCardHolder] = useState("FIRSTNAME SURNAME");
 
-  function renderRow (rowData) {
-    return (
-        <View >
-          <Text style={styles.textDropdown} numberOfLines={1} ellipsizeMode={'tail'}>
-            {rowData}
-          </Text>
-        </View>
-    )
+  // Updates date string state
+  function updateDate(newMonth, newYear) {
+    setMonth(newMonth);
+    setYear(newYear);
+
+    // Remove first 2 digits of year
+    setExpire(newMonth + "/" + newYear.slice(2, 4));
+  }
+
+  // Logic taken from:
+  // https://stackoverflow.com/questions/40237150/react-native-how-to-format-payment-in-mm-yy-and-spaced-16-digit-card-number-in
+  function updateCardNumber(number) {
+    setCardNumber(number.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim());
   }
 
   return (
@@ -29,7 +40,8 @@ export default function App() {
           <TextInput
             style={styles.input}
             keyboardType={'numeric'}
-            onChangeText={input => setCardNumber(input)}
+            onChangeText={input => updateCardNumber(input)}
+            value={cardNumber}
           />
         </View>
         <View style={styles.inputRow}>
@@ -51,11 +63,15 @@ export default function App() {
               options={['01', '02', '03', '04',
                         '05', '06', '07', '08',
                         '09', '10', '11', '12',]}
+              // Grab the selected value for month and reuse old year variable
+              onSelect ={(index, value) => updateDate(String(value), year)}
             />
             <ModalDropdown style={[styles.input, {width: '30%'}]}
               options={['2022', '2023', '2024', '2025',
                         '2026', '2027', '2028', '2029',
                         '2030', '2031', '2032', '2023',]}
+              // Grab the selected value for year and reuse old month variable
+              onSelect ={(index, value) => updateDate(month, String(value))}
             />
             <TextInput
               style={[styles.input, {width: '30%'}]}
