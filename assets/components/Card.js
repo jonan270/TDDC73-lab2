@@ -69,7 +69,14 @@ export default function Card(props) {
               </View>
               <View>
                   <Text style={styles.cardTitleText}>Expires</Text>
-                  <Text style={styles.cardText}>{props.expires}</Text>
+                  {/* Mark border if cardNumber input is selected */}
+                  <View style={[
+                    styles.markerView,
+                    props.expireFocused ?
+                    {borderColor: markerColor} : {borderColor: transparentColor}
+                  ]}>
+                    <Text style={styles.cardText}>{props.expires}</Text>
+                  </View>
               </View>
               </View>
           </View>

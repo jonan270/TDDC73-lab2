@@ -20,6 +20,7 @@ export default function App() {
 
   const [cardNumberFocused, setCardNumberFocused] = useState(false);
   const [cardHolderFocused, setCardHolderFocused] = useState(false);
+  const [expireFocused, setExpireFocused] = useState(false);
   const [cvvFocused, setCvvFocused] = useState(false);
 
   // Updates date string state
@@ -75,6 +76,8 @@ export default function App() {
                         '09', '10', '11', '12',]}
               // Grab the selected value for month and reuse old year variable
               onSelect ={(index, value) => updateDate(String(value), year)}
+              onDropdownWillShow={() => setExpireFocused(true)}
+              onDropdownWillHide={() => setExpireFocused(false)}
             />
             <ModalDropdown style={[styles.input, {width: '30%'}]}
               options={['2022', '2023', '2024', '2025',
@@ -82,6 +85,8 @@ export default function App() {
                         '2030', '2031', '2032', '2023',]}
               // Grab the selected value for year and reuse old month variable
               onSelect ={(index, value) => updateDate(month, String(value))}
+              onDropdownWillShow={() => setExpireFocused(true)}
+              onDropdownWillHide={() => setExpireFocused(false)}
             />
             { /* Text input for CVV */}
             <TextInput
@@ -107,6 +112,7 @@ export default function App() {
         showBackside = {cvvFocused}
         cardNumberFocused = {cardNumberFocused}
         cardHolderFocused = {cardHolderFocused}
+        expireFocused = {expireFocused}
       />
     </View>
   );
