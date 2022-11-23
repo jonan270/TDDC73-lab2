@@ -8,9 +8,9 @@ import chipImg from '../images/chip.png'
 import mastercardImg from '../images/mastercard.png'
 import visaImg from '../images/visa.png'
 
-const topImgScaleFactor = 0.65;
-const topImgW = 100 * topImgScaleFactor;
-const topImgH = 80 * topImgScaleFactor;
+const imgScaleFactor = 0.45;
+const topImgW = 100 * imgScaleFactor;
+const topImgH = 80 * imgScaleFactor;
 
 export default function Card(props) {
 
@@ -47,17 +47,17 @@ const styles = StyleSheet.create({
     cardText: {
       color: Colors.white,
       fontFamily: 'monospace',
-      fontSize: 20,
+      fontSize: 36 * imgScaleFactor,
     },
     cardTitleText: {
       color: 'yellow',
       fontFamily: 'monospace',
-      fontSize: 16,
+      fontSize: 26 * imgScaleFactor,
     },
     cardImageBg: {
-      width: 405,
-      height: 261,
-      borderRadius: 15,
+      width: 405 * imgScaleFactor * 1.5,
+      height: 261 * imgScaleFactor * 1.5,
+      borderRadius: 20 * imgScaleFactor,
       overflow: "hidden",
     },
     brandImage: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
-      padding: 25,
+      padding: 32 * imgScaleFactor,
     },
     bottomRowView: {
       justifyContent: 'space-between',

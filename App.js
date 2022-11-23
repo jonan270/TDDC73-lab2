@@ -1,5 +1,7 @@
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import React, { useState } from 'react';
+import ModalDropdown from 'react-native-modal-dropdown';
+
 import Card from './assets/components/Card.js'
 
 
@@ -7,6 +9,17 @@ export default function App() {
   const [cardNumber, setCardNumber] = useState("#### #### #### ####");
   const [cardHolder, setCardHolder] = useState("FIRSTNAME SURNAME");
   const [expire, setExpire] = useState("00/00");
+
+
+  function renderRow (rowData) {
+    return (
+        <View >
+          <Text style={styles.textDropdown} numberOfLines={1} ellipsizeMode={'tail'}>
+            {rowData}
+          </Text>
+        </View>
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -27,11 +40,28 @@ export default function App() {
           />
         </View>
         <View style={styles.inputRow}>
-          <Text style={styles.inputText}>Expiration date</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={input => setExpire(input)}
-          />
+          <Text style={[styles.inputText, {paddingBottom: 5, margin: 2.5}]}>Expiration date</Text>
+          <View style={{width: '100%', flexDirection: 'row', alignItems: 'flex-start', }}>
+            <Text style={[styles.inputText, {width: '33%', margin: 2.5}]}>Month</Text>
+            <Text style={[styles.inputText, {width: '33%', margin: 2.5}]}>Year</Text>
+            <Text style={[styles.inputText, {width: '33%', margin: 2.5}]}>CVV</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <ModalDropdown style={[styles.input, {width: '30%'}]}
+              options={['01', '02', '03', '04',
+                        '05', '06', '07', '08',
+                        '09', '10', '11', '12',]}
+            />
+            <ModalDropdown style={[styles.input, {width: '30%'}]}
+              options={['2022', '2023', '2024', '2025',
+                        '2026', '2027', '2028', '2029',
+                        '2030', '2031', '2032', '2023',]}
+            />
+            <TextInput
+              style={[styles.input, {width: '30%'}]}
+              onChangeText={input => setExpire(input)}
+            />
+          </View>
         </View>
         <View style={{width: '100%', margin: 15,}}>
           <Button
@@ -79,7 +109,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderColor: "#dbdbdb",
-    height: 35,
+    height: 45,
     width: "100%",
     borderWidth: 1,
     borderRadius: 5,
