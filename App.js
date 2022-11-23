@@ -16,9 +16,15 @@ export default function App() {
 
   const [cardNumber, setCardNumber] = useState("#### #### #### ####");
   const [cardHolder, setCardHolder] = useState("FIRSTNAME SURNAME");
+  const [cvv, setCvv] = useState("000");
+
+  const [cardNumberFocused, setCardNumberFocused] = useState(false);
+  const [cardHolderFocused, setCardHolderFocused] = useState(false);
+  const [cvvFocused, setCvvFocused] = useState(false);
 
   // Updates date string state
   function updateDate(newMonth, newYear) {
+
     setMonth(newMonth);
     setYear(newYear);
 
@@ -42,6 +48,8 @@ export default function App() {
             keyboardType={'numeric'}
             onChangeText={input => updateCardNumber(input)}
             value={cardNumber}
+            onFocus={() => setCardNumberFocused(true)}
+            onBlur={() => setCardNumberFocused(false)}
           />
         </View>
         <View style={styles.inputRow}>
@@ -49,6 +57,8 @@ export default function App() {
           <TextInput
             style={styles.input}
             onChangeText={input => setCardHolder(input)}
+            onFocus={() => setCardHolderFocused(true)}
+            onBlur={() => setCardHolderFocused(false)}
           />
         </View>
         <View style={styles.inputRow}>
@@ -73,9 +83,13 @@ export default function App() {
               // Grab the selected value for year and reuse old month variable
               onSelect ={(index, value) => updateDate(month, String(value))}
             />
+            { /* Text input for CVV */}
             <TextInput
               style={[styles.input, {width: '30%'}]}
-              onChangeText={input => setExpire(input)}
+              onChangeText={input => setCvv(input)}
+              keyboardType={'numeric'}
+              onFocus={() => setCvvFocused(true)}
+              onBlur={() => setCvvFocused(false)}
             />
           </View>
         </View>
@@ -90,6 +104,9 @@ export default function App() {
         cardHolder = {cardHolder}
         cardNumber = {cardNumber}
         expires = {expire}
+        showBackside = {cvvFocused}
+        cardNumberFocused = {cardNumberFocused}
+        cardHolderFocused = {cardHolderFocused}
       />
     </View>
   );
