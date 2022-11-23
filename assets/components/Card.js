@@ -29,6 +29,7 @@ export default function Card(props) {
           >
               <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
                 <View style={styles.magnetStripView}></View>
+                <Text style={{color: Colors.white, alignSelf: 'flex-end', marginRight: '10%', marginTop: '3%'}}>CVV</Text>
                 <View style={styles.cvvView}><Text style={styles.cvvText}>{props.cvv}</Text></View>
                 <View style={{margin: 32 * imgScaleFactor}}>
                   <Image source={visaImg} style={styles.brandImage}/>
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
       height: '20%',
       backgroundColor: Colors.black,
       alignSelf: 'center',
-      marginVertical: '7.5%',
+      marginTop: '7.5%',
     },
     cvvView: {
       width: '80%',
