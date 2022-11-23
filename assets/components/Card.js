@@ -27,9 +27,13 @@ export default function Card(props) {
             source={backsideBg}
             style={styles.cardImageBg}
           >
-            <View style={styles.cardView}>
-
-            </View>
+              <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
+                <View style={styles.magnetStripView}></View>
+                <View style={styles.cvvView}><Text style={styles.cvvText}>{props.cvv}</Text></View>
+                <View style={{margin: 32 * imgScaleFactor}}>
+                  <Image source={visaImg} style={styles.brandImage}/>
+                </View>
+              </View>
           </ImageBackground>
           <StatusBar style="auto" />
         </View>
@@ -120,8 +124,27 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
     },
     markerView: {
-      borderWidth: 2,
-      padding: 2,
-      borderRadius: 6,
+      borderWidth: 4 * imgScaleFactor,
+      padding: 4 * imgScaleFactor,
+      borderRadius: 9 * imgScaleFactor,
+    },
+    magnetStripView: {
+      width: '100%',
+      height: '20%',
+      backgroundColor: Colors.black,
+      alignSelf: 'center',
+      marginVertical: '7.5%',
+    },
+    cvvView: {
+      width: '80%',
+      height: '20%',
+      justifyContent: 'center',
+      backgroundColor: Colors.white,
+      alignSelf: 'center',
+      borderRadius: 9 * imgScaleFactor,
+    },
+    cvvText: {
+      alignSelf: 'flex-end',
+      margin: 9 * imgScaleFactor,
     }
   });

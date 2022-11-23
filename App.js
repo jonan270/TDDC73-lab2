@@ -113,6 +113,7 @@ export default function App() {
         cardNumberFocused = {cardNumberFocused}
         cardHolderFocused = {cardHolderFocused}
         expireFocused = {expireFocused}
+        cvv = {cvv}
       />
     </View>
   );
