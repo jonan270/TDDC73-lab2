@@ -76,7 +76,14 @@ export default function App() {
                         '09', '10', '11', '12',]}
               // Grab the selected value for month and reuse old year variable
               onSelect ={(index, value) => updateDate(String(value), year)}
-              onDropdownWillShow={() => setExpireFocused(true)}
+              onDropdownWillShow={() => {
+                // Needs to be toggled manually
+                setCardNumberFocused(false);
+                setCvvFocused(false);
+                setExpireFocused(false);
+                setCardHolderFocused(false);
+                setExpireFocused(true);
+              }}
               onDropdownWillHide={() => setExpireFocused(false)}
             />
             <ModalDropdown style={[styles.input, {width: '30%'}]}
@@ -85,7 +92,14 @@ export default function App() {
                         '2030', '2031', '2032', '2023',]}
               // Grab the selected value for year and reuse old month variable
               onSelect ={(index, value) => updateDate(month, String(value))}
-              onDropdownWillShow={() => setExpireFocused(true)}
+              onDropdownWillShow={() => {
+                // Needs to be toggled manually
+                setCardNumberFocused(false);
+                setCvvFocused(false);
+                setExpireFocused(false);
+                setCardHolderFocused(false);
+                setExpireFocused(true);
+              }}
               onDropdownWillHide={() => setExpireFocused(false)}
             />
             { /* Text input for CVV */}
