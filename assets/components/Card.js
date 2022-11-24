@@ -22,7 +22,11 @@ const markerColor = 'hsla(360, 100%, 100%, 1.0)'
 
 export default function Card(props) {
   
+  // State for handling variable images
   const [brandImg, setBrandImg] = useState(visaImg);
+
+  // State for hash masking card number
+  const [maskedNumber, setMaskedNumber] = useState("#### #### #### ####")
 
   function setCardType () {
     let number = props.cardNumber;
@@ -60,11 +64,26 @@ export default function Card(props) {
     setBrandImg(visaImg); // default type
   }
 
-  // When cardNumber is changed, update image used.
+  // When cardNumber is changed:
+  // · Update image used.
+  // · Generate masked cardNumber
   useEffect(() => {
     setCardType();
-  },[props.cardNumber])
 
+    let cardNum = props.cardNumber;
+    let fullyMasked = "#### #### #### ####";
+    let maskedRes = "";
+
+    for (var i = 0; i < fullyMasked.length; i++) {
+      if(cardNum[i])
+        maskedRes += cardNum[i];
+      else
+        maskedRes += fullyMasked[i];
+    }
+
+    setMaskedNumber(maskedRes);
+
+  },[props.cardNumber])
 
   if(props.showBackside) {
     return(
@@ -104,7 +123,7 @@ export default function Card(props) {
                 props.cardNumberFocused ?
                 {borderColor: markerColor} : {borderColor: transparentColor}
               ]}>
-                <Text style={styles.cardText}>{props.cardNumber}</Text>
+                <Text style={styles.cardText}>{maskedNumber}</Text>
               </View>
               <View style={styles.bottomRowView}>
               <View>

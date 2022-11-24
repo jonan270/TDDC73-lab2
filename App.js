@@ -14,7 +14,7 @@ export default function App() {
   const [year, setYear] = useState("0000");
   const [expire, setExpire] = useState("00/00");
 
-  const [cardNumber, setCardNumber] = useState("#### #### #### ####");
+  const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("FIRSTNAME SURNAME");
   const [cvv, setCvv] = useState("000");
 
