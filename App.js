@@ -35,8 +35,9 @@ export default function App() {
 
   // Logic taken from:
   // https://stackoverflow.com/questions/40237150/react-native-how-to-format-payment-in-mm-yy-and-spaced-16-digit-card-number-in
+  // replace(/\D/g,'') removes all non numerics.
   function updateCardNumber(number) {
-    setCardNumber(number.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim());
+    setCardNumber(number.replace(/\D/g,'').replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim());
   }
 
   return (
@@ -51,13 +52,22 @@ export default function App() {
             value={cardNumber}
             onFocus={() => setCardNumberFocused(true)}
             onBlur={() => setCardNumberFocused(false)}
+            maxLength={19}
           />
         </View>
         <View style={styles.inputRow}>
           <Text style={styles.inputText}>Card Name</Text>
           <TextInput
             style={styles.input}
-            onChangeText={input => setCardHolder(input)}
+            onChangeText={
+              // Remove special characters ans numbers
+              input => 
+              setCardHolder(
+                input.
+                replace(/[0-9]/g, '').
+                replace(/[^a-zA-Z ]/g, ''))
+            }
+            value={cardHolder}
             onFocus={() => setCardHolderFocused(true)}
             onBlur={() => setCardHolderFocused(false)}
           />
@@ -105,10 +115,13 @@ export default function App() {
             { /* Text input for CVV */}
             <TextInput
               style={[styles.input, {width: '30%'}]}
-              onChangeText={input => setCvv(input)}
+              // Remove non-numeric characters
+              onChangeText={input => setCvv(input.replace(/\D/g,''))}
               keyboardType={'numeric'}
               onFocus={() => setCvvFocused(true)}
               onBlur={() => setCvvFocused(false)}
+              value={cvv}
+              maxLength={3}
             />
           </View>
         </View>

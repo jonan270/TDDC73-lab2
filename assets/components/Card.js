@@ -134,7 +134,10 @@ export default function Card(props) {
                     props.cardHolderFocused ?
                     {borderColor: markerColor} : {borderColor: transparentColor}
                   ]}>
-                    <Text style={styles.cardText}>{props.cardHolder}</Text>
+                    <Text style={styles.cardText}>
+                      {/* If no card holder is provided, print "FIRSTNAME SURNAME" */}
+                      {props.cardHolder != "" ? props.cardHolder : "FIRSTNAME SURNAME"}
+                    </Text>
                   </View>
               </View>
               <View>
