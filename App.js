@@ -70,6 +70,7 @@ export default function App() {
             value={cardHolder}
             onFocus={() => setCardHolderFocused(true)}
             onBlur={() => setCardHolderFocused(false)}
+            maxLength={20}
           />
         </View>
         <View style={styles.inputRow}>

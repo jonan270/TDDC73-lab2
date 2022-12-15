@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     cardText: {
       color: Colors.white,
       fontFamily: 'monospace',
-      fontSize: 36 * imgScaleFactor,
+      fontSize: 32 * imgScaleFactor,
     },
     cardTitleText: {
       color: 'yellow',
